@@ -1,0 +1,2 @@
+"total_orders","stage_approved","stage_shipped","stage_delivered","stage_cancelled","stage_unavailable","approval_rate_pct","delivery_rate_pct","end_to_end_pct","leakage_rate_pct","dropped_at_approval","dropped_at_shipping","dropped_at_delivery"
+99441,99441,97899,96478,0,609,100.00,97.02,97.02,0.61,0,1542,1421

@@ -1,0 +1,9 @@
+"order_status","order_count","revenue_potential","revenue_collected","revenue_leaked","pct_of_pipeline","category"
+created,5,,688.10,0,,IN-PIPELINE
+delivered,96478,16114162.52,19776160.44,0,97.27,COLLECTED
+shipped,1107,194119.95,197150.14,0,1.17,IN-PIPELINE
+canceled,625,112564.18,186964.32,112564.18,0.68,LEAKAGE
+processing,301,72837.49,100378.37,0,0.44,IN-PIPELINE
+invoiced,314,70621.60,82410.89,0,0.43,IN-PIPELINE
+unavailable,609,2140.49,126671.70,2140.49,0.01,LEAKAGE
+approved,2,241.08,302.70,0,0.00,IN-PIPELINE

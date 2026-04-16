@@ -1,9 +1,9 @@
 # 💰 Revenue Leakage & Sales Funnel Analysis
 
-> Analyzed **99,441 real e-commerce orders** worth **$16.7M pipeline** using PostgreSQL and Power BI  
+> Analyzed **99,441 real e-commerce orders** worth **$20.47M pipeline** using PostgreSQL and Power BI  
 > to identify **$114,704 in revenue leakage** and deliver actionable business recommendations.
 
-![Dashboard Preview](docs/screenshots/page1_executive.png)
+![Dashboard Preview](docs/screenshots/Page1_Executive_Summary)
 
 ---
 

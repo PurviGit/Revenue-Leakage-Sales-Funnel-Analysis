@@ -3,7 +3,7 @@
 > Analyzed **99,441 real e-commerce orders** worth **$20.47M pipeline** using PostgreSQL and Power BI  
 > to identify **$114,704 in revenue leakage** and deliver actionable business recommendations.
 
-![Dashboard Preview](docs/screenshots/Page1_Executive_Summary)
+![Dashboard Preview](docs/screenshots/Page1_Executive_Summary.png)
 
 ---
 

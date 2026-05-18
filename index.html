@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Revenue Leakage & Sales Funnel Intelligence Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: white;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .highlight {
+      color: #60a5fa;
+    }
+
+    .subtitle {
+      max-width: 900px;
+      margin: auto;
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .secondary {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #cbd5e1;
+      margin-bottom: 45px;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h2 {
+      font-size: 2.2rem;
+      color: #60a5fa;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .tools {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .tool {
+      background: rgba(59, 130, 246, 0.15);
+      color: #bfdbfe;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .workflow-step {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      color: #e2e8f0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .workflow-arrow {
+      color: #60a5fa;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+    }
+
+    .dashboard-preview .dashboard-card img {
+      height: 320px;
+    }
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(96, 165, 250, 0.15);
+      transition: 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .dashboard-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      background: #111827;
+      padding: 10px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dashboard-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .dashboard-content {
+      padding: 22px;
+    }
+
+    .dashboard-content h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .dashboard-content p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 35px;
+    }
+
+    .recommendation {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .recommendation h4 {
+      margin-bottom: 12px;
+      color: #60a5fa;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    @media(max-width:768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="badge">
+        Data Analytics Portfolio Project
+      </div>
+
+      <h1>
+        Revenue Leakage &
+        <span class="highlight">Sales Funnel Intelligence</span>
+        Dashboard
+      </h1>
+
+      <p class="subtitle">
+        End-to-end sales funnel and revenue leakage analysis using PostgreSQL, SQL, Power BI, and What-If revenue recovery simulations to identify operational inefficiencies and recover lost revenue.
+      </p>
+
+      <div class="buttons">
+
+        <a class="btn primary"
+          href="https://github.com/PurviGit/Revenue-Leakage-Sales-Funnel-Analysis"
+          target="_blank">
+          View GitHub Repository
+        </a>
+
+        <a class="btn secondary"
+          href="./dashboard/Revenue_Leakage_Analysis.pdf"
+          target="_blank">
+          View Dashboard PDF
+        </a>
+
+      </div>
+
+      <div class="stats">
+
+        <div class="card">
+          <h2>$20.47M</h2>
+          <p>Total e-commerce sales pipeline analyzed across 99,441 orders.</p>
+        </div>
+
+        <div class="card">
+          <h2>$114.7K</h2>
+          <p>Total revenue leakage identified from cancelled and unavailable orders.</p>
+        </div>
+
+        <div class="card">
+          <h2>97.02%</h2>
+          <p>End-to-end sales funnel conversion rate achieved.</p>
+        </div>
+
+        <div class="card">
+          <h2>$5,401</h2>
+          <p>Estimated immediately recoverable revenue via operational improvements.</p>
+        </div>
+
+      </div>
+
+      <div class="tools">
+
+        <div class="tool">SQL</div>
+        <div class="tool">PostgreSQL</div>
+        <div class="tool">Power BI</div>
+        <div class="tool">DAX</div>
+        <div class="tool">Python</div>
+        <div class="tool">Business Intelligence</div>
+        <div class="tool">What-If Analysis</div>
+
+      </div>
+
+    </section>
+
+    <!-- WORKFLOW -->
+
+    <section class="section">
+
+      <h2 class="section-title">Project Workflow</h2>
+
+      <p class="section-subtitle">
+        End-to-end workflow used to diagnose sales funnel leakage, quantify lost revenue, and simulate recovery strategies.
+      </p>
+
+      <div class="workflow">
+
+        <div class="workflow-step">SQL Analysis</div>
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">Funnel Diagnostics</div>
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">Leakage Quantification</div>
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">Recovery Modeling</div>
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">Power BI Dashboard</div>
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">Business Recommendations</div>
+
+      </div>
+
+    </section>
+
+    <!-- BUSINESS INSIGHTS -->
+
+    <section class="section">
+
+      <h2 class="section-title">Key Business Insights</h2>
+
+      <p class="section-subtitle">
+        Analysis uncovered operational bottlenecks, revenue leakage patterns, and high-impact recovery opportunities.
+      </p>
+
+      <div class="stats">
+
+        <div class="card">
+          <h2>1,542</h2>
+          <p>Orders dropped between approval and shipping stage.</p>
+        </div>
+
+        <div class="card">
+          <h2>7,826</h2>
+          <p>SLA breached deliveries identified with average delay of 8.9 days.</p>
+        </div>
+
+        <div class="card">
+          <h2>RO</h2>
+          <p>Highest leakage state with 2.68% revenue leakage rate.</p>
+        </div>
+
+        <div class="card">
+          <h2>90.84%</h2>
+          <p>Overall on-time delivery rate across delivered orders.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- DASHBOARD -->
+
+    <section class="section">
+
+      <h2 class="section-title">Power BI Dashboard Preview</h2>
+
+      <p class="section-subtitle">
+        Interactive 4-page executive dashboard designed for leakage analysis, funnel diagnostics, and recovery simulations.
+      </p>
+
+      <div class="grid dashboard-preview">
+
+        <div class="dashboard-card">
+
+          <a href="./docs/screenshots/Page1_Executive_Summary.png" target="_blank">
+            <img src="./docs/screenshots/Page1_Executive_Summary.png">
+          </a>
+
+          <div class="dashboard-content">
+            <h3>Executive Summary</h3>
+            <p>Pipeline KPIs, leakage metrics, sales funnel performance, and drop-off analysis.</p>
+          </div>
+
+        </div>
+
+        <div class="dashboard-card">
+
+          <a href="./docs/screenshots/Page2_Monthly_Analysis.png" target="_blank">
+            <img src="./docs/screenshots/Page2_Monthly_Analysis.png">
+          </a>
+
+          <div class="dashboard-content">
+            <h3>Monthly Leakage Trend</h3>
+            <p>Monthly delivered vs leaked revenue analysis from Sep 2016 to Oct 2018.</p>
+          </div>
+
+        </div>
+
+        <div class="dashboard-card">
+
+          <a href="./docs/screenshots/Page3_Regional_Analysis.png" target="_blank">
+            <img src="./docs/screenshots/Page3_Regional_Analysis.png">
+          </a>
+
+          <div class="dashboard-content">
+            <h3>Regional Performance Analysis</h3>
+            <p>27-state leakage analysis with revenue comparison and conditional formatting.</p>
+          </div>
+
+        </div>
+
+        <div class="dashboard-card">
+
+          <a href="./docs/screenshots/Page4_Action_Page.png" target="_blank">
+            <img src="./docs/screenshots/Page4_Action_Page.png">
+          </a>
+
+          <div class="dashboard-content">
+            <h3>Recovery & Action Centre</h3>
+            <p>Interactive What-If recovery simulation with operational recommendations.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- WHAT IF SECTION -->
+
+    <section class="section">
+
+      <h2 class="section-title">Revenue Recovery Simulation</h2>
+
+      <p class="section-subtitle">
+        Built an interactive What-If simulation using DAX parameters to estimate recoverable revenue through operational improvements and retention actions.
+      </p>
+
+      <div class="stats">
+
+        <div class="card">
+          <h2>5%</h2>
+          <p>Recovery simulation target applied using DAX What-If parameters.</p>
+        </div>
+
+        <div class="card">
+          <h2>$3,241</h2>
+          <p>Estimated recovery potential through shipping-stage operational alerts.</p>
+        </div>
+
+        <div class="card">
+          <h2>$2,161</h2>
+          <p>Estimated recovery from targeted cancellation intervention campaigns.</p>
+        </div>
+
+        <div class="card">
+          <h2>$5,401</h2>
+          <p>Total immediately recoverable revenue estimated using combined strategy.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RECOMMENDATIONS -->
+
+    <section class="section">
+
+      <h2 class="section-title">
+        Business Recommendations
+      </h2>
+
+      <p class="section-subtitle">
+        Operational recommendations designed to reduce leakage, improve fulfillment performance, and increase revenue recovery.
+      </p>
+
+      <div class="recommendations">
+
+        <div class="recommendation">
+
+          <h4>1. Shipping Drop-Off Alerts</h4>
+
+          <p>
+            <strong>Problem:</strong>
+            1,542 orders dropped before shipping stage causing significant leakage.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Strategy:</strong>
+            Automated 24-hour seller escalation alerts for delayed shipping confirmation.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Recovery Potential:</strong>
+            Estimated $3,241 immediately recoverable revenue.
+          </p>
+
+        </div>
+
+        <div class="recommendation">
+
+          <h4>2. Cancellation Recovery Campaign</h4>
+
+          <p>
+            <strong>Problem:</strong>
+            Cancelled orders contributed over $112K in leakage.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Strategy:</strong>
+            Trigger discount offers and recovery outreach before order cancellation completion.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Recovery Potential:</strong>
+            Estimated $2,161 recoverable through intervention offers.
+          </p>
+
+        </div>
+
+        <div class="recommendation">
+
+          <h4>3. Failed Delivery Tracking</h4>
+
+          <p>
+            <strong>Problem:</strong>
+            1,421 orders dropped between shipping and delivery stages.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Strategy:</strong>
+            Real-time delivery tracking with automated SMS notifications and SLA monitoring.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Expected Impact:</strong>
+            Reduced failed deliveries and improved customer satisfaction.
+          </p>
+
+        </div>
+
+        <div class="recommendation">
+
+          <h4>4. Inventory SLA Monitoring</h4>
+
+          <p>
+            <strong>Problem:</strong>
+            Unavailable inventory contributed directly to leakage events.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Strategy:</strong>
+            Introduce seller inventory SLA alerts and proactive stock monitoring.
+          </p>
+
+          <br>
+
+          <p>
+            <strong>Expected Impact:</strong>
+            Reduction in unavailable order cancellations and fulfillment failures.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:40px; text-align:center;">
+
+        <h2 style="color:#60a5fa;">
+          $5,401 Immediate Recovery Potential
+        </h2>
+
+        <p style="margin-top:15px; color:#cbd5e1;">
+          Combined operational improvements targeting shipping leakage and cancellation recovery could immediately recover approximately $5,401 in lost revenue.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+      <p>
+        Built by <strong>Purvi Porwal</strong> • Data Analytics Portfolio Project
+      </p>
+
+      <br>
+
+      <p>
+
+        <a href="https://github.com/PurviGit" target="_blank">GitHub</a>
+        •
+        <a href="https://www.linkedin.com/in/purvi-porwal-a6554a258/" target="_blank">LinkedIn</a>
+
+      </p>
+
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

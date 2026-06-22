@@ -1,6 +1,6 @@
 # 💰 Revenue Leakage & Sales Funnel Analysis
 
-[![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-blue?style=for-the-badge)(https://purvigit.github.io/Revenue-Leakage-Funnel-Analysis/)]
+[![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-blue?style=for-the-badge)](https://purvigit.github.io/Revenue-Leakage-Funnel-Analysis/)
 
 > Analyzed **99,441 real e-commerce orders** worth **$20.47M pipeline** using PostgreSQL and Power BI  
 > to identify **$114,704 in revenue leakage**, quantify **$5,401 immediately recoverable revenue**,  

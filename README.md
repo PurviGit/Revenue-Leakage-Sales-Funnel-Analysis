@@ -220,4 +220,4 @@ Line chart: Delivered vs Leaked (Sep 2016–Oct 2018) · Revenue leaked column c
 
 ---
 
-*Built by **Purvi Porwal** | [LinkedIn](https://linkedin.com/in/purvi-porwal-a6554a258) | [GitHub](https://github.com/PurviGit)*
+*Built by **Purvi Porwal** | [LinkedIn](https://linkedin.com/in/purviporwal) | [GitHub](https://github.com/PurviGit)*
